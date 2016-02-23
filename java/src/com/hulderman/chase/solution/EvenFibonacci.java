@@ -1,7 +1,9 @@
 package com.hulderman.chase.solution;
 
+import java.util.Scanner;
+
 public class EvenFibonacci {
-	private sequenceLength;
+	private int sequenceLength;
 
 	public EvenFibonacci(){
 		this(10);
@@ -16,7 +18,9 @@ public class EvenFibonacci {
 		return createSequence(max, select, false);
 	}
 	private int createSequence(int max, int select, boolean add){
-		int hold, last, lastLast;
+		int hold = 0; 
+		int last = 0;
+		int lastLast = 0;
 		int num = 1;
 		int count = 0; //how many times did we run?
 		int sum = 0; //keep track of the sum
@@ -29,6 +33,7 @@ public class EvenFibonacci {
 				last = 1;
 				lastLast = 1;
 				num = 1;
+				count++;
 				continue;
 			}
 
@@ -43,6 +48,7 @@ public class EvenFibonacci {
 			if (add && isEven){
 				sum += num;
 			}
+			count++;
 		} while (num < max);
 		return sum;
 	}
@@ -57,5 +63,12 @@ public class EvenFibonacci {
 	}
 	public static void main(String[] args) {
 		EvenFibonacci solution = new EvenFibonacci();
+		Scanner userInput = new Scanner(System.in);
+		int input = 0;
+		do {
+			System.out.println("Sequence Number: ");
+			input = userInput.nextInt();
+        	System.out.printf("Your Number is: %d\n", solution.getFibonacciNumber(input));
+		} while (input != -1);
 	}
 }

@@ -4,10 +4,10 @@ public class EvenFibonacci {
 	public EvenFibonacci(){
 
 	}
-	public int getFibonacciNumber(){
-		return null;
+	public int getFibonacciNumber(int i){
+		return 0;
 	}
-	public int sumOfEven(){
-		return null;
+	public int sumOfEven(int i){
+		return 0;
 	}
 }

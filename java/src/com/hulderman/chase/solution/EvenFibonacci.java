@@ -11,52 +11,56 @@ public class EvenFibonacci {
 	public EvenFibonacci(int num){
 		setSequenceLength(num);
 	}
-	private int createSequence(int max) {
-		return createSequence(max, max, false);
+	private int createSequence(int i) {
+		int max = (int)Math.pow(2, i);
+		return createSequence(max, i, false);
 	}
-	private int createSequence(int max, int select) {
-		return createSequence(max, select, false);
+	private int createSequence(int i, boolean add) {
+		int max = (int)Math.pow(2, i);
+		return createSequence(max, i, add);
 	}
 	private int createSequence(int max, int select, boolean add){
-		int hold = 0; 
-		int last = 0;
-		int lastLast = 0;
+		int last = 1;
+		int lastLast = 1;
 		int num = 1;
 		int count = 0; //how many times did we run?
 		int sum = 0; //keep track of the sum
-		boolean isEven; 
+		boolean isEven, isSelect; 
 
-		do {
-			isEven = (num % 2 == 0);
-			
+		while (num < max) {
+			isSelect = (count == select);
+
 			if (count == 0 || count == 1){
-				last = 1;
-				lastLast = 1;
-				num = 1;
+				if(!add && isSelect){
+					return num;
+				}
 				count++;
 				continue;
 			}
-
-			hold = last + lastLast;
 			lastLast = last;
 			last = num;
-			num = hold;
-
-			if (!add && (count == select)) {
-				return num;
-			}
+			num = last + lastLast;
+			isEven = (num % 2 == 0);
 			if (add && isEven){
 				sum += num;
 			}
+			if (!add && isSelect){
+				return num;
+			} else if (add && isSelect) {
+				return sum;
+			}
 			count++;
-		} while (num < max);
+		}
 		return sum;
 	}
 	public int getFibonacciNumber(int i){
 		return createSequence(i);
 	}
 	public int sumOfEven(int i){
-		return createSequence(i, 0, true);
+		return createSequence(i, true);
+	}
+	public int sumOfEven(int max, int i){
+		return createSequence(max, i, true);
 	}
 	public void setSequenceLength(int num){
 		this.sequenceLength = num;
@@ -70,5 +74,6 @@ public class EvenFibonacci {
 			input = userInput.nextInt();
         	System.out.printf("Your Number is: %d\n", solution.getFibonacciNumber(input));
 		} while (input != -1);
+		System.out.printf("Result: %d\n", solution.sumOfEven(4000000, -1));
 	}
 }

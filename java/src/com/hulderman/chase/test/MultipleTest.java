@@ -21,6 +21,6 @@ public class MultipleTest extends TestCase {
 	}
 
 	public void testFindMultiple() {
-		assertEquals(18, solution.findMultipleSum(3, 10));
+		assertEquals(23, solution.findMultipleSum(3, 5, 10));
 	}
 }

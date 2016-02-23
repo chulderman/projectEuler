@@ -10,15 +10,15 @@ public class MultiplesThreeFive {
 	}
 	public MultiplesThreeFive(int max) {
 		setMax(max);
-		this.threeAndFive = findMultipleSum(3, this.maximum) + findMultipleSum(5, this.maximum);
+		this.threeAndFive = findMultipleSum(3, 5, this.maximum);
 	}
 
-	public int findMultipleSum(int multiple, int max) {
+	public int findMultipleSum(int m1, int m2, int max) {
 		int sum = 0;
 
 		for(int i = 0; i < max; i++)
 		{
-			if( i % multiple == 0){
+			if( (i % m1 == 0) || (i % m2 == 0)){
 				sum += i;
 			}
 		}

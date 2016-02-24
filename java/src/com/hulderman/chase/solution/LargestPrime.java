@@ -57,7 +57,6 @@ public class LargestPrime {
 	}
 	public static void main(String[] args) {
 		LargestPrime solution = new LargestPrime(600851475143L);
-		//LargestPrime solution = new LargestPrime(13195);
 		
 		System.out.printf("The largest prime number of %d is %d\n", solution.getQueryNumber(), solution.getResult());
 	}

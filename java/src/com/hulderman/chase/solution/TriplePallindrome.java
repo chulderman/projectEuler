@@ -21,8 +21,8 @@ public class TriplePallindrome {
 		int pal = 0;
 		int floor = 0;
 
-		for (int i = 9999; i > floor; i--){
-			for(int j = 9999; j > floor; j--){
+		for (int i = 999; i > floor; i--){
+			for(int j = 999; j > floor; j--){
 				k = i*j;
 				if(isPallindrome(k)){
 					if (pal < k){

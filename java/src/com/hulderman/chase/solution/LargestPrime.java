@@ -9,8 +9,10 @@ public class LargestPrime {
 		this(0);
 	}
 	public LargestPrime(long number){
-		setQueryNumber(number);
-		setResult(evaluateLargestPrime(getQueryNumber()));
+<<<<<<< HEAD
+		this.queryNumber = number;
+		this.result = evaluateLargestPrime(this.queryNumber);
+>>>>>>> 473f7940b9dc5ce5a0415270a9cdc69e02150e16
 	}
 	private void setResult(long number){
 		this.result = number;

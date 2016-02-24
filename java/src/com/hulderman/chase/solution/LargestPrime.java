@@ -9,7 +9,8 @@ public class LargestPrime {
 	}
 	public LargestPrime(long number){
 		setQueryNumber(number);
-		setResult(evaluateLargestPrime(getQueryNumber()));
+		//setResult(evaluateLargestPrime(getQueryNumber()));
+		setResult(quadraticSieve(getQueryNumber()));
 	}
 	private void setResult(long number){
 		this.result = number;
@@ -35,6 +36,9 @@ public class LargestPrime {
 		}
 		System.out.println();
 		return hold;
+	}
+	private long quadraticSieve(long query){
+
 	}
 	public boolean isPrime(long num){
 		

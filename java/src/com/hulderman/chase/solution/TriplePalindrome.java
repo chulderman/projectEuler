@@ -1,11 +1,11 @@
 package com.hulderman.chase.solution;
 
-public class TriplePallindrome {
+public class TriplePalindrome {
 
 	private int firstNumber, secondNumber, product;
 
-	public TriplePallindrome() {
-		findPallindrome();
+	public TriplePalindrome() {
+		findPalindrome();
 	}
 	public int getFirstNumber() {
 		return this.firstNumber;
@@ -16,7 +16,7 @@ public class TriplePallindrome {
 	public int getProduct() {
 		return this.product;
 	}
-	private void findPallindrome(){
+	private void findPalindrome(){
 		int k;
 		int pal = 0;
 		int floor = 0;
@@ -24,7 +24,7 @@ public class TriplePallindrome {
 		for (int i = 999; i > floor; i--){
 			for(int j = 999; j > floor; j--){
 				k = i*j;
-				if(isPallindrome(k)){
+				if(isPalindrome(k)){
 					if (pal < k){
 						pal = k;
 						floor = pal/(i-1);
@@ -35,7 +35,7 @@ public class TriplePallindrome {
 		}
 		this.product = pal;
 	}
-	private boolean isPallindrome(int query) {
+	private boolean isPalindrome(int query) {
 		String s = Integer.toString(query);
 		String reversed = reverseString(s);
 
@@ -57,7 +57,7 @@ public class TriplePallindrome {
 		return new String(output);
 	}
 	public static void main(String[] args) {
-		TriplePallindrome solution = new TriplePallindrome();
+		TriplePalindrome solution = new TriplePalindrome();
 		System.out.println("The largest palindrome made from the product of two 3-digit numbers is " + solution.getProduct());
 	}
 }

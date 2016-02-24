@@ -1,32 +1,44 @@
 package com.hulderman.chase.solution;
 
-import java.util.Scanner;
-
 public class LargestPrime {
-	private int queryNumber;
+	private long queryNumber;
+	private long result;
 
-	public LargestPrime(int number){
+	public LargestPrime(){
+		this(0);
+	}
+	public LargestPrime(long number){
 		setQueryNumber(number);
-	} 
-	public void setQueryNumber(int number){
+		setResult(evaluateLargestPrime(getQueryNumber()));
+	}
+	private void setResult(long number){
+		this.result = number;
+	}
+	public long getResult(){
+		return this.result;
+	}
+	public void setQueryNumber(long number){
 		this.queryNumber = number;
 	}
-	public int getQueryNumber() {
+	public long getQueryNumber() {
 		return this.queryNumber;
 	}
-	public int evaluateLargestPrime(int query){
-		int hold;
-
-		for(int i = 1; i*i <= query; i+=2){
-			if (isPrime(i)){
-				hold = i;
+	private long evaluateLargestPrime(long query){
+		long hold = 1;
+		System.out.printf("The query is %d\n", query);
+		for(long i = 1; i <= query; i+=2){
+			if (query % i == 0) {
+				if (isPrime(i)){
+					hold = i;
+				}
 			}
 		}
+		System.out.println();
 		return hold;
 	}
-	public boolean isPrime(int num){
+	public boolean isPrime(long num){
 		
-		for (int i = 2; i*i <= num; i++){
+		for (long i = 2; i*i <= num; i++){
 			if (num % i == 0){
 				return false;
 			}
@@ -34,20 +46,8 @@ public class LargestPrime {
 		return true;
 	}
 	public static void main(String[] args) {
-		LargestPrime solution = new LargestPrime();
-		Scanner userInput = new Scanner(System.in);
-		int input = 0;
-		String result;
-
-		do {
-			System.out.println("Number to Test: ");
-			input = userInput.nextInt();
-			if (solution.isPrime(input)){
-				result = " "; 
-			} else {
-				result = " NOT ";
-			}
-        	System.out.printf("The number %d is%sprime.\n", input, result);
-		} while (input != -1);
+		LargestPrime solution = new LargestPrime(600851475143L);
+		
+		System.out.printf("The largest prime number of %d is %d\n", solution.getQueryNumber(), solution.getResult());
 	}
 }

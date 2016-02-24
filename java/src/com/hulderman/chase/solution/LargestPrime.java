@@ -8,8 +8,8 @@ public class LargestPrime {
 		this(0);
 	}
 	public LargestPrime(long number){
-		setQueryNumber(number);
-		setResult(evaluateLargestPrime(getQueryNumber()));
+		queryNumber = number;
+		result = evaluateLargestPrime(queryNumber);
 		//setResult(quadraticSieve(getQueryNumber()));
 	}
 	private void setResult(long number){

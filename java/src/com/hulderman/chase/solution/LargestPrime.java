@@ -26,7 +26,6 @@ public class LargestPrime {
 	}
 	private long evaluateLargestPrime(long query){
 		long hold = 1;
-		System.out.printf("The query is %d\n", query);
 		for(long i = 1; i <= query; i+=2){
 			if (query % i == 0) {
 				if (isPrime(i)){
@@ -38,7 +37,7 @@ public class LargestPrime {
 		return hold;
 	}
 	private long quadraticSieve(long query){
-
+		return null;
 	}
 	public boolean isPrime(long num){
 		

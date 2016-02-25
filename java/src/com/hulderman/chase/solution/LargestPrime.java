@@ -25,16 +25,12 @@ public class LargestPrime {
 		return this.queryNumber;
 	}
 	private long evaluateLargestPrime(long query){
-		long hold = 1;
 		for(long i = 1; i <= query; i+=2){
 			if (query % i == 0) {
 				query /= i;
-				if (isPrime(i)){
-					hold = i;
-				}
 			}
 		}
-		return hold;
+		return query;
 	}
 	public long fermatFactor(long num){
 		long a = (long)Math.ceil(Math.sqrt(num));

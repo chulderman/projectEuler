@@ -1,24 +1,26 @@
 package com.hulderman.chase.helper;
 
-import java.util.Scanner;
+/**
+*	Helper class Euclidean offers a recursive and iterative methods of calulating the
+*	greatest common denominator (factor) of two numbers using the Euclidean Algorithm. 
+*
+*	@author Chase Hulderman
+*	@version version 1.0 - 160218
+*	@since version 1.0
+*/
 
 public class Euclidean {
 
-	private Scanner userInput;
 	private int firstNumber;
 	private int secondNumber;
 	private int gcd;
 
 	public Euclidean(){
-		this.userInput = new Scanner(System.in);
-		System.out.println("First Number: ");
-        setFirstNumber(userInput.nextInt());
-        System.out.println("Second Number: ");
-        setSecondNumber(userInput.nextInt());
+		this(0, 0);
 	}
 	public Euclidean(int num1, int num2){
-		setFirstNumber(num1);
-		setSecondNumber(num2);
+		this.firstNumber = num1;
+		this.secondNumber = num2;
 	}
 	public void setFirstNumber(int number){
 		this.firstNumber = number;
@@ -33,21 +35,17 @@ public class Euclidean {
 		return this.secondNumber;
 	}
 	public int getGCD(){
-		return calcGCD(this.firstNumber, this.secondNumber);
+		return recursiveGCD(this.firstNumber, this.secondNumber);
 	}
 	public int getGCD(int x, int y){
-		return calcGCD(x, y);
+		return recursiveGCD(x, y);
 	}
-	private int calcGCD(int x, int y){
+	private int recursiveGCD(int x, int y){
 		if (y == 0){
 			return x;
 		}else{
-			int r = calcGCD(y, x % y);
+			int r = recursiveGCD(y, x % y);
 			return r;
 		}
-	}
-	public static void main(String[] args) {
-		Euclidean euclid = new Euclidean();
-		System.out.printf("GCD of %d and %d is %d\n", euclid.getFirstNumber(), euclid.getSecondNumber(), euclid.getGCD());
 	}
 }

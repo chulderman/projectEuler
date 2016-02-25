@@ -54,12 +54,15 @@ public class EratosthenesSieve {
 	*/
 	private void findPrimes(int n, BitSet fullSet, ArrayList<Integer> primeSet){
 
+		//Evaluate up to sqrt(n) and so fully fillter the fullSet
 		for(int i = 2; i*i <= n; i++){
 			if (fullSet.get(i)) {
 				primeSet.add(i);
 				clearMultiples(i, n, fullSet);
 			}
 		}
+		
+		//Use the rest of the fullSet to finish entering primes
 		for(int j = (int)Math.sqrt(n); j <= n; j++){
 			if(fullSet.get(j)){
 				primeSet.add(j);

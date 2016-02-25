@@ -36,7 +36,8 @@ public class EratosthenesSieve {
 	/**
 	*	initSets() initializes the sets given some maximum value.
 	*
-	*	@param	n	The maximum value of the set
+	*	@param	n			The maximum value of the set
+	*	@return	bitArray	A BitSet fully initialized
 	*/	
 	private BitSet initSets(int n){
 		BitSet bitArray = new BitSet(n);
@@ -61,7 +62,7 @@ public class EratosthenesSieve {
 				clearMultiples(i, n, fullSet);
 			}
 		}
-		
+
 		//Use the rest of the fullSet to finish entering primes
 		for(int j = (int)Math.sqrt(n); j <= n; j++){
 			if(fullSet.get(j)){

@@ -30,7 +30,7 @@ public class EratosthenesSieve {
 		this.setSize = approximatePrime(n);
 		this.fullSet = initSets(this.setSize);
 
-		this.findPrimes(this.setSize, this.fullSet, this.primeSet);
+		this.primeSet = this.findPrimes(this.setSize);
 	}
 
 	/**
@@ -52,21 +52,25 @@ public class EratosthenesSieve {
 	*	@param	fullSet		The full set of integers represented by a Binary Array of '0' for prime or '1 ' if it is a multiple
 	*	@param	primeSet	The set of primes we're going to store.
 	*/
-	private void findPrimes(int n, BitSet fullSet, ArrayList<Integer> primeSet){
+	private ArrayList<Integer> findPrimes(int n){
+		BitSet isMultiple = new BitSet(n);
+		ArrayList<Integer> isPrime = new ArrayList<Integer>();
+
 		//Evaluate up to sqrt(n) and so fully fillter the fullSet
 		for(int i = 2; i*i <= n; i++){
-			if (!fullSet.get(i)) {
-				primeSet.add(i);
-				setMultiples(i, n, fullSet);
+			if (!isMultiple.get(i)) {
+				isPrime.add(i);
+				isMultiple = setMultiples(i, n, isMultiple);
 			}
 		}
 
 		//Use the rest of the fullSet to finish entering primes
 		for(int j = (int)Math.sqrt(n); j <= n; j++){
-			if(!fullSet.get(j)){
-				primeSet.add(j);
+			if(!isMultiple.get(j)){
+				isPrime.add(j);
 			}
 		}
+		return isPrime;
 	}
 
 	/**
@@ -76,12 +80,14 @@ public class EratosthenesSieve {
 	*	@param	n		The maximum value of the set
 	*	@param	fullSet	This is a Binary Array that contains '0' for primes and '1' for non-primes or multiples
 	*/
-	private void setMultiples(int prime, int n, BitSet fullSet) {
+	private BitSet setMultiples(int prime, int n, BitSet fullSet) {
 		int index;
+		BitSet isMultiple = fullSet;
 		for (int i = 2; i <= n/prime; i++){
 			index = (i*prime);
 			fullSet.set(index);
 		}
+		return isMultiple;
 	}
 
 	/**
@@ -116,9 +122,7 @@ public class EratosthenesSieve {
 		if (n > this.maxPrimeIndex){
 			this.maxPrimeIndex = pi(n);
 			this.setSize = approximatePrime(n);
-			this.primeSet.clear();
-
-			this.findPrimes(this.setSize, this.fullSet, this.primeSet);
+			this.primeSet = this.findPrimes(this.setSize);
 		}
 		return this.primeSet.get(n-1).intValue();
 	}

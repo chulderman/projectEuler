@@ -67,11 +67,9 @@ public class EratosthenesSieve {
 	*	@param	fullSet	This is a Binary Array that contains '0' for primes and '1' for non-primes or multiples
 	*/
 	private BitSet setMultiples(int prime, int n, BitSet fullSet) {
-		int index;
 		BitSet isMultiple = fullSet;
-		for (int i = 2; i <= n/prime; i++){
-			index = (i*prime);
-			fullSet.set(index);
+		for (int i = prime*prime; i <= n; i+=prime){
+			fullSet.set(i);
 		}
 		return isMultiple;
 	}

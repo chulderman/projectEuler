@@ -41,7 +41,6 @@ public class EratosthenesSieve {
 	*/	
 	private BitSet initSets(int n){
 		BitSet bitArray = new BitSet(n);
-		bitArray.set(0,n);
 		this.primeSet = new ArrayList<Integer>();
 		return bitArray;
 	}
@@ -50,39 +49,38 @@ public class EratosthenesSieve {
 	*	findPrimes() does what it's called.
 	*
 	*	@param	n			The maximum value of the set
-	*	@param	fullSet		The full set of integers represented by a Binary Array of '1' for prime or '0 ' if it is a multiple
+	*	@param	fullSet		The full set of integers represented by a Binary Array of '0' for prime or '1 ' if it is a multiple
 	*	@param	primeSet	The set of primes we're going to store.
 	*/
 	private void findPrimes(int n, BitSet fullSet, ArrayList<Integer> primeSet){
-
 		//Evaluate up to sqrt(n) and so fully fillter the fullSet
 		for(int i = 2; i*i <= n; i++){
-			if (fullSet.get(i)) {
+			if (!fullSet.get(i)) {
 				primeSet.add(i);
-				clearMultiples(i, n, fullSet);
+				setMultiples(i, n, fullSet);
 			}
 		}
 
 		//Use the rest of the fullSet to finish entering primes
 		for(int j = (int)Math.sqrt(n); j <= n; j++){
-			if(fullSet.get(j)){
+			if(!fullSet.get(j)){
 				primeSet.add(j);
 			}
 		}
 	}
 
 	/**
-	*	clearMultiples() is the sieve operation and filters the fullSet
+	*	setMultiples() is the sieve operation and filters the fullSet
 	*
 	*	@param	prime	The prime we're working with
 	*	@param	n		The maximum value of the set
-	*	@param	fullSet	This is a Binary Array that contains '1' for primes and '0' for non-primes or multiples
+	*	@param	fullSet	This is a Binary Array that contains '0' for primes and '1' for non-primes or multiples
 	*/
-	private void clearMultiples(int prime, int n, BitSet fullSet) {
+	private void setMultiples(int prime, int n, BitSet fullSet) {
 		int index;
 		for (int i = 2; i <= n/prime; i++){
 			index = (i*prime);
-			fullSet.clear(index);
+			fullSet.set(index);
 		}
 	}
 
@@ -118,10 +116,11 @@ public class EratosthenesSieve {
 		if (n > this.maxPrimeIndex){
 			this.maxPrimeIndex = pi(n);
 			this.setSize = approximatePrime(n);
-			this.fullSet = initSets(this.setSize);
+			this.primeSet.clear();
+
 			this.findPrimes(this.setSize, this.fullSet, this.primeSet);
 		}
-		return this.primeSet.get(n).intValue();
+		return this.primeSet.get(n-1).intValue();
 	}
 
 	/**

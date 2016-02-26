@@ -14,7 +14,6 @@ public class EratosthenesSieve {
 	/**
 	*	Private class values
 	*/
-	private BitSet fullSet;
 	private ArrayList<Integer> primeSet;
 	private int maxPrimeIndex;
 	private int setSize;
@@ -28,21 +27,8 @@ public class EratosthenesSieve {
 	public EratosthenesSieve(int n) {
 		this.maxPrimeIndex = pi(n);
 		this.setSize = approximatePrime(n);
-		this.fullSet = initSets(this.setSize);
 
 		this.primeSet = this.findPrimes(this.setSize);
-	}
-
-	/**
-	*	initSets() initializes the sets given some maximum value.
-	*
-	*	@param	n			The maximum value of the set
-	*	@return	bitArray	A BitSet fully initialized
-	*/	
-	private BitSet initSets(int n){
-		BitSet bitArray = new BitSet(n);
-		this.primeSet = new ArrayList<Integer>();
-		return bitArray;
 	}
 
 	/**

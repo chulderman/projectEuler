@@ -47,11 +47,21 @@ public class Euclidean {
 	public int getSecondNumber(){
 		return this.secondNumber;
 	}
-	public int getGCD(){
-		return recursiveGCD(this.firstNumber, this.secondNumber);
-	}
-	public int getGCD(int x, int y){
-		return recursiveGCD(x, y);
+	
+	/**
+	*	getGCD() returns the greatest common divider.
+	*
+	*	@param	choose	TRUE for the recursive method or FALSE for the iterative method
+	*	@return	gcd	the greatest common denominator (factor) of x and y
+	*/
+	public int getGCD(boolean choose){
+		int gcd;
+		if (choose){
+			gcd = recursiveGCD(this.firstNumber, this.secondNumber);
+		} else {
+			gcd = iterativeGCD(this.firstNumber, this.secondNumber);
+		}
+		return gcd;
 	}
 
 	/**
@@ -68,5 +78,21 @@ public class Euclidean {
 			int r = recursiveGCD(y, x % y);
 			return r;
 		}
+	}
+
+	/**
+	*	iterativeGCD() is the recursive Euclidean algorithm.
+	*
+	*	@param	x	some first integer
+	*	@param	y	some second integer
+	*	@return	x	the greatest common denominator (factor) of x and y
+	*/
+	private int iterativeGCD(int x, int y){
+		while (y != 0){
+			int r = x % y;
+			x = y;
+			y = r;
+		}
+		return x;
 	}
 }
